@@ -18,7 +18,7 @@ int Comeco(){
     int a;
     printf("****************************************************************************************\n");
     printf("\t### JOGO DA VELHA ###\n");
-    printf("1-Jogar.\n2-Sair.\n");
+    printf("\n1-Jogar\n2-Sair\n");
     scanf("%d", &a);
     if(a == 1) return a;
      printf("****************************************************************************************\n");
@@ -69,72 +69,34 @@ int Ganhou(Matriz* matriz){
     int i,j;
     int igual_X = 0; 
     int igual_O = 0;
-
-    for(i=0; i<5; i+=2){
-        if(matriz->jogo[i][0] == 'X')
-            igual_X++;
-        else if(matriz->jogo[i][0] == 'O')
-            igual_O++;
+    j=0;
+    while(j<5){
+        for(i=0; i<5; i+=2){
+            if(matriz->jogo[i][j] == 'X')
+                igual_X++;
+            else if(matriz->jogo[i][j] == 'O')
+                igual_O++;
+        }
+        if(igual_O == 3) return 1;
+        igual_O = 0;
+        if(igual_X == 3) return 2;
+        igual_X = 0;
+        j+=2;
     }
-    if(igual_O == 3) return 1;
-    igual_O = 0;
-    if(igual_X == 3) return 2;
-    igual_X = 0;
-    
-    for(i=0; i<5; i+=2){
-        if(matriz->jogo[i][2] == 'X')
-            igual_X++;
-        else if(matriz->jogo[i][2] == 'O')
-            igual_O++;
+    j=0;
+    while(j<5){
+        for(i=0; i<5; i+=2){
+            if(matriz->jogo[j][i] == 'X')
+                igual_X++;
+            else if(matriz->jogo[j][i] == 'O')
+                igual_O++;
+        }
+        if(igual_O == 3) return 1;
+        igual_O = 0;
+        if(igual_X == 3) return 2;
+        igual_X = 0;
+        j+=2;
     }
-    if(igual_O == 3) return 1;
-    igual_O = 0;
-    if(igual_X == 3) return 2;
-    igual_X = 0;
-    
-    for(i=0; i<5; i+=2){
-        if(matriz->jogo[i][4] == 'X')
-            igual_X++;
-        else if(matriz->jogo[i][4] == 'O')
-            igual_O++;
-    }
-    if(igual_O == 3) return 1;
-    igual_O = 0;
-    if(igual_X == 3) return 2;
-    igual_X = 0;
-    
-    for(i=0; i<5; i+=2){
-        if(matriz->jogo[0][i] == 'X')
-            igual_X++;
-        else if(matriz->jogo[0][i] == 'O')
-            igual_O++;
-    }
-    if(igual_O == 3) return 1;
-    igual_O = 0;
-    if(igual_X == 3) return 2;
-    igual_X = 0;
-    
-    for(i=0; i<5; i+=2){
-        if(matriz->jogo[2][i] == 'X')
-            igual_X++;
-        else if(matriz->jogo[2][i] == 'O')
-            igual_O++;
-    }
-    if(igual_O == 3) return 1;
-    igual_O = 0;
-    if(igual_X == 3) return 2;
-    igual_X = 0;
-    
-    for(i=0; i<5; i+=2){
-        if(matriz->jogo[4][i] == 'X')
-            igual_X++;
-        else if(matriz->jogo[4][i] == 'O')
-            igual_O++;
-    }
-    if(igual_O == 3) return 1;
-    igual_O = 0;
-    if(igual_X == 3) return 2;
-    igual_X = 0;
     
     for(i=0; i<5; i+=2){
         if(matriz->jogo[i][i] == 'X')
@@ -169,7 +131,7 @@ int Quem_ganhou(Matriz* matriz){
     if(ganhador == 1) printf("PLAYER (O) GANHOU!!!!!!\n\n");
     else if(ganhador == 2) printf("PLAYER (X) GANHOU!!!!!!\n\n");
     else printf("DEU VELHA!!!\n");
-    printf("\n1- Jogar novamente.\n2- Sair.\n");
+    printf("\n1- Jogar novamente\n2- Sair\n");
     scanf("%d", &opcao);
     if(opcao==1) return 1;
     printf("****************************************************************************************\n");

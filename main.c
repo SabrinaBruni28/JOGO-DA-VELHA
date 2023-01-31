@@ -9,35 +9,39 @@ int main(){
     int tempo;
     int opcao;
     tempo = Comeco();
+    /*Laco que funciona como uma maquina de estados.*/
     while(tempo){
-        switch (tempo)
-        {
-        case 1:
-            Inicializa(&matriz);
-            tempo = Escolha_Player();
-            Print(&matriz);
-            break;
-        case 2:
-            printf("PLAYER: X\n");
-            player_atual = player1;
-            printf("Posicoes: ");
-            scanf("%d %d", &posicao1, &posicao2);
-            if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 3;
-            Print(&matriz);
-            if(Check(&matriz) || Ganhou(&matriz)) tempo = 4;
-            break;
-        case 3:
-            printf("PLAYER: O\n");
-            player_atual = player2;
-            printf("Posicoes: ");
-            scanf("%d %d", &posicao1, &posicao2);
-            if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 2;
-            Print(&matriz);
-            if(Check(&matriz) || Ganhou(&matriz) ) tempo = 4;
-            break;
-        case 4:
-            tempo = Quem_ganhou(&matriz);
-            break;
+        switch (tempo){
+            /*Inicia o jogo.*/
+            case 1:
+                Inicializa(&matriz);
+                tempo = Escolha_Player();
+                Print(&matriz);
+                break;
+            /*Player X jogando.*/
+            case 2:
+                printf("PLAYER: X\n");
+                player_atual = player1;
+                printf("Posicoes: ");
+                scanf("%d %d", &posicao1, &posicao2);
+                if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 3;
+                Print(&matriz);
+                if(Check(&matriz) || Ganhou(&matriz)) tempo = 4;
+                break;
+            /*Player 0 jogando.*/
+            case 3:
+                printf("PLAYER: O\n");
+                player_atual = player2;
+                printf("Posicoes: ");
+                scanf("%d %d", &posicao1, &posicao2);
+                if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 2;
+                Print(&matriz);
+                if(Check(&matriz) || Ganhou(&matriz) ) tempo = 4;
+                break;
+            /*finaliza o jogo.*/
+            case 4:
+                tempo = Quem_ganhou(&matriz);
+                break;
         }
     }
     return 0;
