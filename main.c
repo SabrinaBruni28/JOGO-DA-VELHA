@@ -20,9 +20,9 @@ int main(){
                 break;
             /*Player X jogando.*/
             case 2:
-                printf("PLAYER: X\n");
+                printf("\033[1;33mPLAYER: X\n\033[m");
                 player_atual = player1;
-                printf("Posicoes: ");
+                printf("\033[1mPosicoes: \033[m");
                 scanf("%d %d", &posicao1, &posicao2);
                 if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 3;
                 Print(&matriz);
@@ -30,9 +30,9 @@ int main(){
                 break;
             /*Player 0 jogando.*/
             case 3:
-                printf("PLAYER: O\n");
+                printf("\033[1;34mPLAYER: O\033[m\n");
                 player_atual = player2;
-                printf("Posicoes: ");
+                printf("\033[1mPosicoes: \033[m");
                 scanf("%d %d", &posicao1, &posicao2);
                 if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 2;
                 Print(&matriz);

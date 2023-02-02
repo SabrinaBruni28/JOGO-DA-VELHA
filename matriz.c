@@ -16,27 +16,33 @@ void Inicializa(Matriz* matriz){
 }
 int Comeco(){
     int a;
-    printf("****************************************************************************************\n");
-    printf("\t### JOGO DA VELHA ###\n");
-    printf("\n1-Jogar\n2-Sair\n");
+    printf("\033[1;36m****************************************************************************************\033[m\n");
+    printf("\t\033[1;35m### JOGO DA VELHA ###\033[m\n");
+    printf("\n\033[1m1-Jogar\n2-Sair\033[m\n");
     scanf("%d", &a);
     if(a == 1) return a;
-     printf("****************************************************************************************\n");
+     printf("\033[1;36m****************************************************************************************\033[m\n");
     return 0;
 }
 void Print(Matriz* matriz){
     int i,j;
     printf("\n\n\t");
     for(i=0; i<5; i++){
-        for(j=0; j<5; j++)
-            printf("%c ", matriz->jogo[i][j]);
+        for(j=0; j<5; j++){
+            if(matriz->jogo[i][j]=='X')
+                printf("\033[1;33m%c \033[1;33m", matriz->jogo[i][j]);
+            else if(matriz->jogo[i][j]=='O')
+                printf("\033[1;34m%c \033[1;33m", matriz->jogo[i][j]);
+            else
+                printf("\033[1;37m%c \033[1;33m", matriz->jogo[i][j]);
+        }
         printf("\n\t");
     }
     printf("\n\n");
 }
 int Inserir(Matriz* matriz, char vez, int posicao1, int posicao2){
     if(posicao1 > 3 || posicao2 > 3 || posicao1 < 1 || posicao2 < 1){
-        printf("\nINSIRA UMA POSICAO VALIDA!!\n");
+        printf("\n\033[1;4;31mINSIRA UMA POSICAO VALIDA!!\033[m\n");
         return 0;
     }
     if(posicao1==1) posicao1 = 0;
@@ -46,7 +52,7 @@ int Inserir(Matriz* matriz, char vez, int posicao1, int posicao2){
     else if(posicao2==3) posicao2 = 4;
 
     if(matriz->jogo[posicao1][posicao2] == 'X' || matriz->jogo[posicao1][posicao2] == 'O') {
-        printf("\nLOCAL JA PREENCHIDO!!!\n");
+        printf("\n\033[1;4;31mLOCAL JA PREENCHIDO!!!\033[m\n");
         return 0;
     }
     matriz->jogo[posicao1][posicao2] = vez;
@@ -128,19 +134,19 @@ int Ganhou(Matriz* matriz){
 int Quem_ganhou(Matriz* matriz){
     int opcao;
     int ganhador = Ganhou(matriz);
-    if(ganhador == 1) printf("PLAYER (O) GANHOU!!!!!!\n\n");
-    else if(ganhador == 2) printf("PLAYER (X) GANHOU!!!!!!\n\n");
-    else printf("DEU VELHA!!!\n");
-    printf("\n1- Jogar novamente\n2- Sair\n");
+    if(ganhador == 1) printf("\033[1;34mPLAYER (O) GANHOU!!!!!!\033[m\n\n");
+    else if(ganhador == 2) printf("\033[1;33mPLAYER (X) GANHOU!!!!!!\033[m\n\n");
+    else printf("\033[1;32mDEU VELHA!!!\033[m\n");
+    printf("\n\033[1m1- Jogar novamente\n2- Sair\033[m\n");
     scanf("%d", &opcao);
     if(opcao==1) return 1;
-    printf("****************************************************************************************\n");
+    printf("\033[1;36m****************************************************************************************\033[m\n");
     return 0;
 }
 int Escolha_Player(){
     int a;
-    printf("\n# Qual voce quer?");
-    printf("  1)X   2)O\n");
+    printf("\n\033[1m# Qual voce quer?\033[m");
+    printf(" \033[1;33m 1)X \033[m \033[1;34m 2)O\033[m\n");
     scanf("%d", &a);
     if(a == 1) return 2;
     else if(a == 2) return 3;   
