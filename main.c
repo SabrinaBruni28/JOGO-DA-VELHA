@@ -5,44 +5,51 @@ int main(){
     char player1 = 'X';
     char player2 = 'O';
     char player_atual;
-    int posicao1,posicao2;
+    int posicao;
     int tempo;
-    int opcao;
-    tempo = Comeco();
-    /*Laco que funciona como uma maquina de estados.*/
+
+    Asterisco(AMARELO);
+    Titulo(AZUL);
+
+    tempo = Jogar();
+
+    /* Loop que mantém o jogo ativo. */
     while(tempo){
         switch (tempo){
-            /*Inicia o jogo.*/
+            /* Inicia o jogo. */
             case 1:
                 Inicializa(&matriz);
-                tempo = Escolha_Player();
-                Print(&matriz);
+                tempo = EscolhaPlayer() + 1;
+                Imprime(&matriz);
                 break;
+
             /*Player X jogando.*/
             case 2:
-                printf("\033[1;33mPLAYER: X\n\033[m");
+                printf("\033[%d;%dm\t" "PLAYER: %c" "\033[m\n\n", BOLD, AMARELO, player1);
                 player_atual = player1;
-                printf("\033[1mPosicoes: \033[m");
-                scanf("%d %d", &posicao1, &posicao2);
-                if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 3;
-                Print(&matriz);
-                if(Check(&matriz) || Ganhou(&matriz)) tempo = 4;
+                posicao = Posicao();
+                if(Inserir(&matriz, player_atual, posicao)) tempo = 3;
+                Imprime(&matriz);
+
+                if(FimJogo(&matriz)) tempo = 4;
                 break;
+
             /*Player 0 jogando.*/
             case 3:
-                printf("\033[1;34mPLAYER: O\033[m\n");
+                printf("\033[%d;%dm\t" "PLAYER: %c" "\033[m\n\n", BOLD, AZUL, player2 );
                 player_atual = player2;
-                printf("\033[1mPosicoes: \033[m");
-                scanf("%d %d", &posicao1, &posicao2);
-                if(Inserir(&matriz,player_atual,posicao1, posicao2)) tempo = 2;
-                Print(&matriz);
-                if(Check(&matriz) || Ganhou(&matriz) ) tempo = 4;
+                posicao = Posicao();
+                if(Inserir(&matriz, player_atual, posicao)) tempo = 2;
+                Imprime(&matriz);
+                if(FimJogo(&matriz)) tempo = 4;
                 break;
-            /*finaliza o jogo.*/
+
+            /*Finaliza o jogo.*/
             case 4:
-                tempo = Quem_ganhou(&matriz);
+                tempo = JogarNovamente();
                 break;
         }
     }
+    Asterisco(AMARELO);
     return 0;
 }
