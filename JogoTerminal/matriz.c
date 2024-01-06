@@ -23,7 +23,7 @@ int Jogar(){
 }
 
 void Imprime(Matriz* matriz){
-    int i,j;
+
     printf("\n\n\t\t");
     printf(" %s | %s | %s ", WhichOne(matriz, 0, 0), WhichOne(matriz, 0, 1), WhichOne(matriz, 0, 2));
 

@@ -1,6 +1,6 @@
 #include "matriz.h"
 
-int main(){
+int main() {
     Matriz matriz;
     char player1 = 'X';
     char player2 = 'O';
